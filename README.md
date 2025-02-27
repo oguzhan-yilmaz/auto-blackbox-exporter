@@ -34,9 +34,11 @@ helm install -n monitoring \
 ```bash
 helm repo add auto-blackbox-exporter https://oguzhan-yilmaz.github.io/auto-blackbox-exporter/
 
-helm install auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
+helm install -n monitoring \
+    auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
 
-helm install --version 0.1.1 auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
+helm install --version 0.1.1 -n monitoring \
+    auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
 ```
 
 
