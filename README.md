@@ -27,9 +27,7 @@ helm repo update prometheus-community
 helm install -n monitoring \
     blackbox-exporter prometheus-community/prometheus-blackbox-exporter 
 ```
-## Installation
-
-### Install auto-blacbox-exporter
+## Install auto-blacbox-exporter
 
 ```bash
 helm repo add auto-blackbox-exporter https://oguzhan-yilmaz.github.io/auto-blackbox-exporter/
