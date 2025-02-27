@@ -1,6 +1,6 @@
 # auto-blackbox-exporter
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/auto-blackbox-exporter)](https://artifacthub.io/packages/search?repo=auto-blackbox-exporter)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/auto-blackbox-exporter)](https://artifacthub.io/packages/helm/auto-blackbox-exporter/auto-blackbox-exporter)
 
 <!-- 
 
