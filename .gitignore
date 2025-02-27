@@ -1,0 +1,6 @@
+.vscode
+tmp/
+todo.md
+
+auto-blackbox-exporter/templates/debug*.yaml
+auto-blackbox-exporter/templates/debug*.yml
