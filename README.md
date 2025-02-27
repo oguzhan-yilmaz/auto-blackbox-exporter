@@ -14,7 +14,7 @@
     - prometheus.prometheusSpec.additionalScrapeConfigsSecret -->
 
 
-## Installation
+## Dependencies
 
 
 ### Install blacbox-exporter
@@ -27,6 +27,7 @@ helm repo update prometheus-community
 helm install -n monitoring \
     blackbox-exporter prometheus-community/prometheus-blackbox-exporter 
 ```
+## Installation
 
 ### Install auto-blacbox-exporter
 
@@ -39,7 +40,7 @@ helm install --version 0.1.1 auto-blackbox-exporter auto-blackbox-exporter/auto-
 ```
 
 
-## Generating blackbox-exporter configuration locally
+## [optional] Generating blackbox-exporter configuration locally
 
 
 ### Generate Manifests with Helm
