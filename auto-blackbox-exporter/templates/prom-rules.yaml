@@ -8,9 +8,9 @@ metadata:
     {{- include "blackbox.selectorLabels" . | nindent 4 }}
 spec:
   groups:
-  - name: CertificateExpiryAlerts
+  - name: BlackboxCertificateExpiryAlerts
     rules:
-    - alert: CertificateExpiringCritical
+    - alert: BlackboxCertificateExpiringCritical
       expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringCritical.days }} * 24 * 3600)
       for: 10m
       labels:
@@ -19,7 +19,7 @@ spec:
         summary: "SSL Certificate critically close to expiry"
         description: "Certificate for {{`{{`}} $labels.name {{`}}`}} will expire in less than {{ .Values.prometheusRules.expiringCritical.days }} days (expires at {{`{{`}} $value | humanizeTimestamp {{`}}`}})"
 
-    - alert: CertificateExpiringWarning
+    - alert: BlackboxCertificateExpiringWarning
       expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringWarning.days }} * 24 * 3600)
       for: 10m
       labels:
@@ -28,7 +28,7 @@ spec:
         summary: "SSL Certificate expiring soon"
         description: "Certificate for {{`{{`}} $labels.name {{`}}`}} will expire in less than {{ .Values.prometheusRules.expiringWarning.days }} days (expires at {{`{{`}} $value | humanizeTimestamp {{`}}`}})"
 
-    - alert: CertificateExpiringInfo
+    - alert: BlackboxCertificateExpiringInfo
       expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringInfo.days }} * 24 * 3600)
       for: 10m
       labels:
