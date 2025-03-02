@@ -1,13 +1,8 @@
+additinalHosts:
+  - og-y.com
+  - http://test.com
 
-configObjName: additional-scrape-configs
-configObjKeyName: additional-manifest.yaml
-prometheusJobName: blackbox
-debug: false
 
-prometheus:
-  scrapeInterval: 300s
-  scrapeTimeout: 100s
-  
 prometheusRules:
   enabled: true
   expiringInfo:
@@ -21,18 +16,13 @@ prometheusRules:
     severity: critical
 
 
-additinalHosts:
-  - og-y.com
-  - http://test.com
-
-includeHostsRegex: ""
-excludeHostsRegex: ""
+# includeHostsRegex: ""
+# excludeHostsRegex: ""
 
 
-
-
-
-
+configObjName: auto-blackbox-scrape-configs
+configObjKeyName: auto-blackbox-exporter-config.yaml
+prometheusJobName: auto-blackbox
 
 
 
