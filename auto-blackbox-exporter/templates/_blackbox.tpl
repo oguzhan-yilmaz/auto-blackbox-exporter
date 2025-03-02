@@ -23,5 +23,9 @@ error: "No service with label app.kubernetes.io/name=prometheus-blackbox-exporte
 
 {{- define "blackbox.blackbox-service-endpoint" -}}
 {{- $blackboxSvcObj := (include "blackbox.blackbox-service-obj" . | fromYaml) -}}
-{{  $blackboxSvcObj.name  }}.{{  $blackboxSvcObj.namespace  }}:{{ $blackboxSvcObj.port }}
+{{- if ($blackboxSvcObj).name }}
+"{{  $blackboxSvcObj.name  }}.{{  $blackboxSvcObj.namespace  }}:{{ $blackboxSvcObj.port }}"
+{{- else -}} 
+"blackbox-service-endpoint-not-found.auto-blackbox-exporter.io:9115"
+{{- end }} {{/* end of if */}}
 {{- end }} {{/* end of define */}}
