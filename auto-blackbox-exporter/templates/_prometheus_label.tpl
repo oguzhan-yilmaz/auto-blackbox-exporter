@@ -27,3 +27,9 @@ namespace: {{ $promObj.metadata.namespace }}
 {{ $promObj :=  include "blackbox.prometheus" . | fromYaml -}}
 name: {{ $promObj.metadata.name }}
 {{- end }} {{/* end of define */}}
+
+
+{{- define "blackbox.prometheus-service-monitor-labels" -}}
+{{ $promObj :=  include "blackbox.prometheus" . | fromYaml -}}
+{{ toYaml $promObj.spec.serviceMonitorSelector.matchLabels }}
+{{- end }} {{/* end of define */}}

@@ -4,7 +4,40 @@ configObjKeyName: additional-manifest.yaml
 prometheusJobName: blackbox
 debug: false
 
+prometheus:
+  scrapeInterval: 300s
+  scrapeTimeout: 100s
+  
+prometheusRules:
+  enabled: true
+  expiringInfo:
+    days: 90
+    severity: info
+  expiringWarning:
+    days: 60
+    severity: warning
+  expiringCritical:
+    days: 30
+    severity: critical
 
+
+additinalHosts:
+  - og-y.com
+  - http://test.com
+
+includeHostsRegex: ""
+excludeHostsRegex: ""
+
+
+
+
+
+
+
+
+
+
+## Usual Deployment Values
 
 
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
