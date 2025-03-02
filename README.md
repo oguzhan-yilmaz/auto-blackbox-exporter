@@ -13,11 +13,18 @@
 <!-- additionalScrapeConfigsSecret
     - prometheus.prometheusSpec.additionalScrapeConfigsSecret -->
 
+## Features
+
+- automatically finds with Helm `lookup` function:
+    - Ingress hosts in your Cluster
+    - Prometheus Service Monitor Labels
+    - Blackbox Service Endpoint
+    - 
 
 ## Dependencies
 
 
-### Install blacbox-exporter
+### Install [blacbox-exporter](https://artifacthub.io/packages/helm/prometheus-community/prometheus-blackbox-exporter)
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -69,6 +76,14 @@ helm upgrade --install \
 helm uninstall auto-blackbox-exporter
 ```
 
+## Prometheus
+
+
+### Check days left for Certificate Expiry  
+
+```promql
+(probe_ssl_earliest_cert_expiry - time()) / 24 / 3600
+```
 
 <!-- ---------
 
