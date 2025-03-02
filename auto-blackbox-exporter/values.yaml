@@ -11,13 +11,13 @@ prometheus:
 prometheusRules:
   enabled: true
   expiringInfo:
-    days: 90
+    days: 60
     severity: info
   expiringWarning:
-    days: 60
+    days: 30
     severity: warning
   expiringCritical:
-    days: 30
+    days: 7
     severity: critical
 
 

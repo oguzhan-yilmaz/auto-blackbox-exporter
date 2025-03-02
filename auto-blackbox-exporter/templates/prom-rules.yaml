@@ -1,0 +1,39 @@
+{{- if (.Values.prometheusRules).enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "blackbox.name" .}}-rule
+  labels:
+    {{- include "blackbox.prometheus-service-monitor-labels" . | nindent 4 }}
+    {{- include "blackbox.selectorLabels" . | nindent 4 }}
+spec:
+  groups:
+  - name: CertificateExpiryAlerts
+    rules:
+    - alert: CertificateExpiringCritical
+      expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringCritical.days }} * 24 * 3600)
+      for: 10m
+      labels:
+        severity: {{ .Values.prometheusRules.expiringCritical.severity }}
+      annotations:
+        summary: "SSL Certificate critically close to expiry"
+        description: "Certificate for {{`{{`}} $labels.name {{`}}`}} will expire in less than {{ .Values.prometheusRules.expiringCritical.days }} days (expires at {{`{{`}} $value | humanizeTimestamp {{`}}`}})"
+
+    - alert: CertificateExpiringWarning
+      expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringWarning.days }} * 24 * 3600)
+      for: 10m
+      labels:
+        severity: {{ .Values.prometheusRules.expiringWarning.severity }}
+      annotations:
+        summary: "SSL Certificate expiring soon"
+        description: "Certificate for {{`{{`}} $labels.name {{`}}`}} will expire in less than {{ .Values.prometheusRules.expiringWarning.days }} days (expires at {{`{{`}} $value | humanizeTimestamp {{`}}`}})"
+
+    - alert: CertificateExpiringInfo
+      expr: (probe_ssl_earliest_cert_expiry - time()) < ({{ .Values.prometheusRules.expiringInfo.days }} * 24 * 3600)
+      for: 10m
+      labels:
+        severity: {{ .Values.prometheusRules.expiringInfo.severity }}
+      annotations:
+        summary: "SSL Certificate expiration approaching"
+        description: "Certificate for {{`{{`}} $labels.name {{`}}`}} will expire in less than {{ .Values.prometheusRules.expiringInfo.days }} days (expires at {{`{{`}} $value | humanizeTimestamp {{`}}`}})"
+{{- end }}
