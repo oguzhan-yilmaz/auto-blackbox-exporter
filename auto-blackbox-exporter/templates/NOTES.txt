@@ -1,8 +1,16 @@
 
 # blackbox-exporter-auto-conf-kubernetes
+hello there!
 
 ## Introduction
-hello there!
+{{ $namespace := (include "blackbox.prometheus-namespace" . | fromYaml).namespace  -}}
+{{ $name := (include "blackbox.prometheus-name" . | fromYaml).name  -}}
+
+Found prometheus installed at namespace: {{$namespace}} name: {{$name}}
+
+```bash
+kubectl get -n {{$namespace}} prometheus {{$name}}
+```
 
 ## Ingresses 
 {{ $ingressList := (include "blackbox.ingress" . | fromYaml) -}}
