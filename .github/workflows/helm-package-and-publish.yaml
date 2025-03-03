@@ -46,7 +46,7 @@ jobs:
         id: argocd-application
         run: |
           VERSIONED_ARGOCD_APP_YAML="argocd-application-${{ steps.helm_package.outputs.package-version}}.yaml"
-          cp argocd-application.yaml "$VERSIONED_ARGOCD_APP_YAML"
+          cp argocd-app.yaml "$VERSIONED_ARGOCD_APP_YAML"
           echo "Current targetRevision: $(yq '.spec.source.targetRevision' $VERSIONED_ARGOCD_APP_YAML)"
           yq e '.spec.source.targetRevision = "${{ steps.helm_package.outputs.package-version}}"' --inplace $VERSIONED_ARGOCD_APP_YAML
           echo "Patched targetRevision: $(yq '.spec.source.targetRevision' $VERSIONED_ARGOCD_APP_YAML)"
@@ -105,10 +105,10 @@ jobs:
 
             **ArgoCD Application (latest version)**
             
-            You can use the `argocd-application.yaml` manifest in the Github repo: <https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/blob/main/argocd-application.yaml>
+            You can use the `argocd-app.yaml` manifest in the Github repo: <https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/blob/main/argocd-app.yaml>
 
             ```bash
-            kubectl apply -f https://raw.githubusercontent.com/oguzhan-yilmaz/auto-blackbox-exporter/refs/heads/main/argocd-application.yaml
+            kubectl apply -f https://raw.githubusercontent.com/oguzhan-yilmaz/auto-blackbox-exporter/refs/heads/main/argocd-app.yaml
             ```
 
             **ArgoCD Application (current version)**
