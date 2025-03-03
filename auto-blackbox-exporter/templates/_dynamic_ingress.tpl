@@ -12,21 +12,21 @@ hosts:
 {{- end }} {{/* end of define */}}
 
 {{/* 
-Get K8s ingress objects and combine with .Values.additinalHosts
+Get K8s ingress objects and combine with .Values.additionalHosts
 */}}
 {{- define "blackbox.ingress" -}}
 {{- $ingressList := (include "blackbox.fetch-ingresses" . | fromYaml) -}}
-{{- if  not (or $ingressList.hosts .Values.additinalHosts) }}
+{{- if  not (or $ingressList.hosts .Values.additionalHosts) }}
 hosts: []
 {{- else }} 
 hosts:
 {{- if $ingressList.hosts }} 
 {{ toYaml $ingressList.hosts}}  
 {{- end }} 
-{{- if  .Values.additinalHosts }} {{/* append additionalHosts if exists  */}}
-{{- range $host := .Values.additinalHosts }}
+{{- if  .Values.additionalHosts }} {{/* append additionalHosts if exists  */}}
+{{- range $host := .Values.additionalHosts }}
 - {{ (or (hasPrefix "https://" $host) (hasPrefix "http://" $host)) | ternary $host (printf "https://%s" $host) }}
-{{- end }}  {{/* end of range additinalHosts rules */}}
+{{- end }}  {{/* end of range additionalHosts rules */}}
 {{- end }} 
 {{- end }} {{/* end of if $ingressList */}}
 {{- end }} {{/* end of define */}}
