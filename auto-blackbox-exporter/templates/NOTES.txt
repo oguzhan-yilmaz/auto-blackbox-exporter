@@ -1,22 +1,23 @@
+{{ $namespace := include "blackbox.prometheus-namespace" .  -}}
+{{ $name := include "blackbox.prometheus-name" .  -}}
+{{ $ingressList := (include "blackbox.ingress" . | fromYaml) -}}
+# auto-blackbox-exporter
 
-# blackbox-exporter-auto-conf-kubernetes
-hello there!
 
 ## Introduction
-{{ $namespace := (include "blackbox.prometheus-namespace" . | fromYaml).namespace  -}}
-{{ $name := (include "blackbox.prometheus-name" . | fromYaml).name  -}}
 
-Found prometheus installed at namespace: {{$namespace}} name: {{$name}}
+Found prometheus: {{$name}} [ns: {{$namespace}}]
 
 ```bash
 kubectl get -n {{$namespace}} prometheus {{$name}}
 ```
 
 ## Ingresses 
-{{ $ingressList := (include "blackbox.ingress" . | fromYaml) -}}
 {{ if $ingressList.hosts }}
-Found {{ len $ingressList.hosts }} ingress hosts in your cluster:
-{{ toYaml $ingressList.hosts | indent 2 }}
+Found {{ len $ingressList.hosts }} ingress hosts in your cluster.
+
+Prometheus Scrape Config and Rules are created for following endpoints:
+{{ toYaml $ingressList.hosts }}
 
 
 {{ else }}
