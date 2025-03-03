@@ -1,6 +1,6 @@
 {{/* 
-
-
+Call K8s API and get all Ingress objects
+Prefix with https:// if no protocol defined
 */}}
 {{- define "blackbox.fetch-ingresses" -}}
 hosts:
@@ -12,8 +12,7 @@ hosts:
 {{- end }} {{/* end of define */}}
 
 {{/* 
-
-
+Get K8s ingress objects and combine with .Values.additinalHosts
 */}}
 {{- define "blackbox.ingress" -}}
 {{- $ingressList := (include "blackbox.fetch-ingresses" . | fromYaml) -}}

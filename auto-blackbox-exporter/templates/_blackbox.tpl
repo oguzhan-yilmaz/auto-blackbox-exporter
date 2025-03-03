@@ -1,4 +1,6 @@
-
+{{/* 
+find blackbox service endpoint to scrape
+*/}}
 {{- define "blackbox.blackbox-service-obj" -}}
 {{- $blackboxService := dict "found" nil -}}
 {{- $serviceName := "prometheus-blackbox-exporter" -}}
@@ -17,7 +19,9 @@ error: "No service with label app.kubernetes.io/name=prometheus-blackbox-exporte
 {{- end -}}
 {{- end }} {{/* end of define */}}
 
-
+{{/* 
+format the svc endpoint
+*/}}
 {{- define "blackbox.blackbox-service-endpoint" -}}
 {{- $blackboxSvcObj := (include "blackbox.blackbox-service-obj" . | fromYaml) -}}
 {{- if ($blackboxSvcObj).name }}
