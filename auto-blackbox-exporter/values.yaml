@@ -6,10 +6,10 @@ additinalHosts:
 prometheusRules:
   enabled: true
   expiringInfo:
-    days: 60
+    days: 30
     severity: info
   expiringWarning:
-    days: 30
+    days: 15
     severity: warning
   expiringCritical:
     days: 7
