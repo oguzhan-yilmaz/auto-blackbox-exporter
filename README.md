@@ -30,7 +30,8 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 
 helm repo update prometheus-community
 
-helm install -n monitoring \
+helm upgrade --install -n monitoring \
+    -f blackbox-exporter.values.yaml \
     blackbox-exporter prometheus-community/prometheus-blackbox-exporter 
 ```
 ## Install auto-blacbox-exporter
@@ -69,6 +70,9 @@ helm upgrade --install \
     -n monitoring \
     auto-blackbox-exporter auto-blackbox-exporter/
 ```
+
+      https://medium.com/@parikshitaksande/monitoring-apis-using-blackbox-exporter-18f916e421b4
+      valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 401, 405]
 
 
 ```bash
