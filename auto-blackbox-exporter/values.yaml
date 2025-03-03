@@ -23,6 +23,7 @@ prometheus:
 # excludeHostsRegex: ""
 
 
+# i like vars
 configObjName: auto-blackbox-scrape-configs
 configObjKeyName: auto-blackbox-exporter-config.yaml
 prometheusJobName: auto-blackbox
