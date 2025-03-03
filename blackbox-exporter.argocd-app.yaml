@@ -1,22 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: auto-blackbox-exporter
+  name: blackbox-exporter
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://oguzhan-yilmaz.github.io/auto-blackbox-exporter/
+    repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: '*.*.*' 
 
-    chart: auto-blackbox-exporter
+    chart: prometheus-blackbox-exporter
     helm:
-      releaseName: auto-blackbox-exporter
+      releaseName: blackbox-exporter
 
       # Values file as block file. This takes precedence over values
       # -----------------------------------------------
       valuesObject:
-        todo: "TODO! HERE"
+        config:
+          modules:
+            http_2xx:
+              prober: http
+              timeout: 15s
+              http:
+                valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 401, 405]
+                valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+                follow_redirects: true
+                preferred_ip_protocol: "ip4"
 
       # -----------------------------------------------
 
@@ -25,11 +34,6 @@ spec:
     name: in-cluster
     namespace: monitoring
     # namespace: monitoring
-
-  # Extra information to show in the Argo CD Application details tab
-  info:
-    - name: 'Github Repo'
-      value: 'https://github.com/oguzhan-yilmaz/auto-blackbox-exporter'
 
   # Sync policy
   syncPolicy:
