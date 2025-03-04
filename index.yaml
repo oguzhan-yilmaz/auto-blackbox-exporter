@@ -3,6 +3,17 @@ entries:
   auto-blackbox-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-03-04T14:36:25.354412993Z"
+    description: Auto generate a prometheus scrape config for existing Ingress objects.
+      Includes Uptime and SSL Certificate Expiry Alerts.
+    digest: 8764d22bebe6dbbfa283d42c9fae45f16924cf10993bacc2f342638222a66531
+    name: auto-blackbox-exporter
+    type: application
+    urls:
+    - https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/releases/download/v0.5.1/auto-blackbox-exporter-0.5.1.tgz
+    version: 0.5.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-03-03T20:25:35.006869118Z"
     description: Auto generate a prometheus scrape config for existing Ingress objects.
       Includes Uptime and SSL Certificate Expiry Alerts.
@@ -111,4 +122,4 @@ entries:
     urls:
     - https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/releases/download/v0.1.0/auto-blackbox-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-03T20:25:35.006222348Z"
+generated: "2025-03-04T14:36:25.353753406Z"
