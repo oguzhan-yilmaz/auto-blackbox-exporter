@@ -33,6 +33,7 @@ jobs:
           echo "CLEAN_VERSION Version: $CLEAN_VERSION"
 
           # package the helm chart
+          helm dependency build auto-blackbox-exporter
           PACKAGE_OUTPUT=$(helm package --version "$CLEAN_VERSION" auto-blackbox-exporter)
           echo "PACKAGE_OUTPUT=$PACKAGE_OUTPUT"
           PACKAGE_NAME=$(basename "$PACKAGE_OUTPUT")
