@@ -2,36 +2,29 @@
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/auto-blackbox-exporter)](https://artifacthub.io/packages/helm/auto-blackbox-exporter/auto-blackbox-exporter)
 
-<!-- 
+Fully automatic `prometheus-blackbox-exporter` configuration with Helm.
 
-- https://promlabs.com/blog/2024/02/06/monitoring-tls-endpoint-certificate-expiration-with-prometheus/
-- https://www.infracloud.io/blogs/monitoring-endpoints-kubernetes-blackbox-exporter/
+Automatically create SSL Certificate Expiration alarms for Prometheus Alert Manager for your existing Ingress endpoints.
 
-- https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/additional-scrape-config.md !!!!! -->
+Utilizes Helm `lookup` function to:
 
+- Find Ingress hosts in your Cluster
+- Prometheus Service Monitor labels for Prometheus Rules
+- Blackbox Service Endpoint (for scraping)
 
-<!-- additionalScrapeConfigsSecret
-    - prometheus.prometheusSpec.additionalScrapeConfigsSecret -->
-
-## Features
-
-- automatically finds with Helm `lookup` function:
-    - Ingress hosts in your Cluster
-    - Prometheus Service Monitor Labels
-    - Blackbox Service Endpoint
 
 ## Dependencies
 
 
 ### [blacbox-exporter](https://artifacthub.io/packages/helm/prometheus-community/prometheus-blackbox-exporter)
 
-`auto-blackbox-exporter` is a configuration manager for `prometheus-blackbox-exporter`, and it's included as a Helm Dependency. 
+`prometheus-blackbox-exporter` chart is included as a Helm Dependency. 
 
-If you have `prometheus-blackbox-exporter` installed, you should set it to `false`
+If you have `prometheus-blackbox-exporter` installed, you should set it to `false` to skip installation.
 
 ```yaml
 blackboxExporter:
-  enabled: false
+  install: false
 ```
 
 ## Install auto-blacbox-exporter
@@ -39,10 +32,9 @@ blackboxExporter:
 ```bash
 helm repo add auto-blackbox-exporter https://oguzhan-yilmaz.github.io/auto-blackbox-exporter/
 
-helm install -n monitoring \
-    auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
+helm repo update auto-blackbox-exporter
 
-helm install --version 0.1.1 -n monitoring \
+helm install -n monitoring \
     auto-blackbox-exporter auto-blackbox-exporter/auto-blackbox-exporter
 ```
 
@@ -52,6 +44,9 @@ helm install --version 0.1.1 -n monitoring \
 
 ### Generate Manifests with Helm
 
+
+**Generate .yaml manifests**
+
 ```bash
 git clone https://github.com/oguzhan-yilmaz/auto-blackbox-exporter.git
 cd auto-blackbox-exporter/
@@ -59,47 +54,32 @@ cd auto-blackbox-exporter/
 # vim values.yaml
 
 helm template auto-blackbox-exporter/ --dry-run=server
-
-helm template auto-blackbox-exporter/ --dry-run=server > additional-config.yaml
 ```
 
-### Install with helm locally
+**Install w/ helm locally**
 
 ```bash
 helm upgrade --install \
     -n monitoring \
     auto-blackbox-exporter auto-blackbox-exporter/
-```
 
-      https://medium.com/@parikshitaksande/monitoring-apis-using-blackbox-exporter-18f916e421b4
-      valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 401, 405]
-
-
-```bash
+# uninstallation
 helm uninstall auto-blackbox-exporter
 ```
 
-## Prometheus
+## Grafana Dashboards 
 
+Recommended dashboards for Prometheus Blackbox Exporer 
+
+- https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/
+- https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/
+- https://grafana.com/grafana/dashboards/18538-blackbox-exporter/
+
+
+## Misc
 
 ### Check days left for Certificate Expiry  
 
 ```promql
 (probe_ssl_earliest_cert_expiry - time()) / 24 / 3600
 ```
-
-<!-- ---------
-
-fetaures:
-- auto find prometheus config for correct labels
-- 
-probe_ssl_earliest_cert_expiry
-
----------
- -->
-
-## Grafana Dashboards 
-
-- https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/
-- https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/
-- https://grafana.com/grafana/dashboards/18538-blackbox-exporter/
