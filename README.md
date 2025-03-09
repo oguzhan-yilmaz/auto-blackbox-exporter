@@ -12,28 +12,28 @@
 
 <!-- additionalScrapeConfigsSecret
     - prometheus.prometheusSpec.additionalScrapeConfigsSecret -->
+
 ## Features
 
 - automatically finds with Helm `lookup` function:
     - Ingress hosts in your Cluster
     - Prometheus Service Monitor Labels
     - Blackbox Service Endpoint
-    - 
 
 ## Dependencies
 
 
-### Install [blacbox-exporter](https://artifacthub.io/packages/helm/prometheus-community/prometheus-blackbox-exporter)
+### [blacbox-exporter](https://artifacthub.io/packages/helm/prometheus-community/prometheus-blackbox-exporter)
 
-```bash
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+`auto-blackbox-exporter` is a configuration manager for `prometheus-blackbox-exporter`, and it's included as a Helm Dependency. 
 
-helm repo update prometheus-community
+If you have `prometheus-blackbox-exporter` installed, you should set it to `false`
 
-helm upgrade --install -n monitoring \
-    -f blackbox-exporter.values.yaml \
-    blackbox-exporter prometheus-community/prometheus-blackbox-exporter 
+```yaml
+blackboxExporter:
+  enabled: false
 ```
+
 ## Install auto-blacbox-exporter
 
 ```bash
