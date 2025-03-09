@@ -33,7 +33,7 @@ jobs:
           echo "CLEAN_VERSION Version: $CLEAN_VERSION"
 
           # package the helm chart
-          helm repo add https://prometheus-community.github.io/helm-charts
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
           helm dependency build auto-blackbox-exporter
           PACKAGE_OUTPUT=$(helm package --version "$CLEAN_VERSION" auto-blackbox-exporter)
           echo "PACKAGE_OUTPUT=$PACKAGE_OUTPUT"
