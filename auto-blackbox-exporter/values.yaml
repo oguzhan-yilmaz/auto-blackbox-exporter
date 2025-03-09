@@ -1,7 +1,7 @@
 ## --------- DEPENDENCY: BLACKBOX EXPORTER ----------
 
 blackboxExporter:
-  enabled: true
+  install: true
 
 config:
   modules:
@@ -18,8 +18,8 @@ config:
 
 ## --------- AUTO BLACKBOX EXPORTER ----------
 additionalHosts:
-  - og-y.com
-  - http://test.com
+  - https://artifacthub.io/
+  - https://helm.sh/
 
 
 prometheusRules:
