@@ -45,7 +45,7 @@ additionalScrapeConfigs:
 
 ```bash
 kubectl patch prometheus {{ $promName }} \
-    -n {{ $promNamespace }} --type=merge \
+    -n {{ $namespace }} --type=merge \
     -p '{
       "spec":{
         "additionalScrapeConfigs":{
