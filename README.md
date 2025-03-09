@@ -9,7 +9,7 @@ Automatically create SSL Certificate Expiration alarms for Prometheus Alert Mana
 Utilizes Helm `lookup` function to:
 
 - Find Ingress hosts in your Cluster
-- Prometheus Service Monitor labels for Prometheus Rules
+- Prometheus Service Monitor labels
 - Blackbox Service Endpoint (for scraping)
 
 
