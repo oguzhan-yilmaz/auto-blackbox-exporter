@@ -3,6 +3,22 @@ entries:
   auto-blackbox-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-03-09T18:39:56.610814949Z"
+    dependencies:
+    - condition: blackboxExporter.enabled
+      name: prometheus-blackbox-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: '>= 9.3.0'
+    description: Auto generate a prometheus scrape config for existing Ingress objects.
+      Includes Uptime and SSL Certificate Expiry Alerts.
+    digest: 25ed39d02e64dd03db0877469c1a0650a6c9bc5f6c8dba3262b3c176b28b74ff
+    name: auto-blackbox-exporter
+    type: application
+    urls:
+    - https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/releases/download/v0.5.4/auto-blackbox-exporter-0.5.4.tgz
+    version: 0.5.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-03-04T14:36:25.354412993Z"
     description: Auto generate a prometheus scrape config for existing Ingress objects.
       Includes Uptime and SSL Certificate Expiry Alerts.
@@ -122,4 +138,4 @@ entries:
     urls:
     - https://github.com/oguzhan-yilmaz/auto-blackbox-exporter/releases/download/v0.1.0/auto-blackbox-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-04T14:36:25.353753406Z"
+generated: "2025-03-09T18:39:56.609160837Z"
