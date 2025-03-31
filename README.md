@@ -9,8 +9,7 @@ Automatically create SSL Certificate Expiration alarms for Prometheus Alert Mana
 ## Features
 
 - 🔄 Automatic discovery of Ingress endpoints in your cluster
-- 🔒 SSL Certificate Expiration Alerts 
-- 🔔 Prometheus Rules for Alert Manager 
+- 🔒 SSL Certificate Expiration Alert Manager Alerts 
 - 🎯 Configurable alert thresholds for certificate expiration
 - 🛠️ Auto configured prometheus blackbox-exporter settings
 
