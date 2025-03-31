@@ -16,8 +16,42 @@ spec:
       # Values file as block file. This takes precedence over values
       # -----------------------------------------------
       valuesObject:
-        todo: "TODO! HERE"
+        ## --------- DEPENDENCY: BLACKBOX EXPORTER ----------
+        blackboxExporter:
+          install: true
 
+        config:
+          modules:
+            http_2xx:
+              prober: http
+              timeout: 15s
+              http:
+                valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 401, 405]
+                valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+                follow_redirects: true
+                preferred_ip_protocol: "ip4"
+
+
+        ## --------- AUTO BLACKBOX EXPORTER ----------
+        additionalHosts: []
+        #  - https://artifacthub.io/
+        #  - https://helm.sh/
+
+        prometheusRules:
+          enabled: true
+          expiringInfo:
+            days: 30
+            severity: info
+          expiringWarning:
+            days: 15
+            severity: warning
+          expiringCritical:
+            days: 7
+            severity: critical
+
+        prometheus:
+          scrape_timeout: 60s
+          scrape_interval: 180s
       # -----------------------------------------------
 
   # Destination cluster and namespace to deploy the application

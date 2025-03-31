@@ -1,5 +1,4 @@
 ## --------- DEPENDENCY: BLACKBOX EXPORTER ----------
-
 blackboxExporter:
   install: true
 
@@ -17,20 +16,17 @@ config:
 
 
 ## --------- AUTO BLACKBOX EXPORTER ----------
-additionalHosts:
-  - https://artifacthub.io/
-  - https://helm.sh/
+additionalHosts: []
+#  - https://artifacthub.io/
+#  - https://helm.sh/
+
 
 
 prometheusRules:
   enabled: true
-  # showNotesAnyways: true # ?
   expiringInfo:
     days: 30
     severity: info
-    # customLabelForRules:  # ???
-    #   a: b
-      
   expiringWarning:
     days: 15
     severity: warning
@@ -42,11 +38,6 @@ prometheus:
   scrape_timeout: 60s
   scrape_interval: 180s
 
-# includeHostsRegex: ""
-# excludeHostsRegex: ""
-
-
-# i like vars
 configObjName: auto-blackbox-scrape-configs
 configObjKeyName: auto-blackbox-exporter-config.yaml
 prometheusJobName: auto-blackbox
