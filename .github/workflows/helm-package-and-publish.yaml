@@ -79,8 +79,6 @@ jobs:
 
             Fully automatic `prometheus-blackbox-exporter` configuration with Helm.
 
-            Automatically create SSL Certificate Expiration alarms for Prometheus Alert Manager for your existing Ingress endpoints.
-
             ## Features
 
             - 🔄 Automatic discovery of Ingress endpoints in your cluster
