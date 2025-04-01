@@ -97,9 +97,15 @@ prometheus:
 
 Recommended dashboards for monitoring your endpoints:
 
-- [Blackbox Exporter HTTP Prober](https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/)
-- [Prometheus Blackbox Exporter](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/)
-- [Blackbox Exporter Overview](https://grafana.com/grafana/dashboards/18538-blackbox-exporter/)
+### [Blackbox Exporter HTTP Prober](https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/) @harloprillar
+[![13659-blackbox-exporter-http-prober](https://grafana.com/api/dashboards/13659/images/9638/image)](https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/)
+
+### [Prometheus Blackbox Exporter](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/) @sparanoid
+
+[![7587-prometheus-blackbox-exporter](https://grafana.com/api/dashboards/7587/images/4794/image)](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/)
+
+### [Blackbox Exporter Overview](https://grafana.com/grafana/dashboards/18538-blackbox-exporter/) @Michael H
+[![18538-blackbox-exporter](https://grafana.com/api/dashboards/18538/images/14151/image)](https://grafana.com/grafana/dashboards/18538-blackbox-exporter/)
 
 ## Development
 
